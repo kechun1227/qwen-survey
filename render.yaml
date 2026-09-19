@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: qwen-survey
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.mjs
+    healthCheckPath: /
+    envVars:
+      - key: ADMIN_PASSWORD
+        value: zhoushan2026
+      - key: NODE_VERSION
+        value: 22.0.0
