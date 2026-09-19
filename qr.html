@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>千问办公试用登记 · 二维码</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif; background: #f5f7fa; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+  .card { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 40px 48px 32px; text-align: center; max-width: 400px; }
+  .header { margin-bottom: 24px; }
+  .header .logo-area { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; }
+  .header .brand { font-size: 18px; color: #1677ff; font-weight: 600; }
+  .header .brand-sep { color: #ccc; font-size: 18px; }
+  .header .brand-2 { font-size: 18px; color: #333; font-weight: 600; }
+  .header h1 { font-size: 20px; color: #333; margin-bottom: 4px; }
+  .qr-area { margin: 24px auto; }
+  .qr-area img { display: block; margin: 0 auto; }
+  .url-display { font-size: 13px; color: #999; word-break: break-all; margin-top: 16px; padding: 8px 12px; background: #f5f7fa; border-radius: 6px; }
+  .note { font-size: 12px; color: #ccc; margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="logo-area">
+      <span class="brand">阿里云</span>
+      <span class="brand-sep">|</span>
+      <span class="brand-2">千问办公</span>
+    </div>
+    <h1>扫码登记试用</h1>
+  </div>
+  <div class="qr-area" id="qrArea"></div>
+  <div class="url-display" id="urlDisplay"></div>
+  <div class="note">请使用手机微信/钉钉/浏览器扫码</div>
+</div>
+<script>
+  // Use server-injected public URL, fallback to window.location
+  var publicUrl = window.__PUBLIC_URL__ || (window.location.origin + '/');
+  document.getElementById('urlDisplay').textContent = publicUrl;
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  var publicUrl = window.__PUBLIC_URL__ || (window.location.origin + '/');
+  var qr = new QRCode(document.getElementById('qrArea'), {
+    text: publicUrl,
+    width: 240,
+    height: 240,
+    colorDark: '#333333',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+</script>
+</body>
+</html>
